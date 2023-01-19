@@ -1,0 +1,61 @@
+---
+import logo from '/logo.svg'
+
+const m = {
+    home: '/',
+    about: '/about',
+    blog: '/blog',
+}
+---
+
+<header class="header">
+    <div class="container">
+        <div class="logo">
+            <a href="/">
+                <img src={logo} alt="" />
+            </a>
+        </div>
+        <nav>
+            <ul>
+                {
+                    Object.entries(m).map(([key, val]) => (
+                        <li>
+                            <a href={val}>{key.toUpperCase()}</a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<style lang="scss">
+    .header {
+        height: 70px;
+        background: var(--color-primary);
+    }
+    header {
+        .container {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+        img {
+            height: 35px;
+            vertical-align: middle;
+        }
+        nav {
+            ul {
+                display: flex;
+                li {
+                    padding: 0 10px;
+                    a {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+</style>

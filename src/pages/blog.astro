@@ -1,0 +1,26 @@
+---
+import Card from '../components/astro/Card.astro'
+import Layout from '../components/astro/Layout.astro'
+import ShowCase from '../components/astro/ShowCase.astro'
+
+interface Props {}
+
+const post = await Astro.glob('../posts/*.md')
+---
+
+<Layout title="blog">
+    <ShowCase heading="blog heading" text="simple blog" />
+    <secton class="page-content">
+        <div class="container">
+            {
+                post.map((p: any) => (
+                    <Card>
+                        <h3>{p.frontmatter.title}</h3>
+                        <h3>{p.frontmatter.expert}</h3>
+                        <a href={p.frontmatter.slug}>ReadMore</a>;
+                    </Card>
+                ))
+            }
+        </div>
+    </secton>
+</Layout>

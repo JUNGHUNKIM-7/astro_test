@@ -1,0 +1,20 @@
+---
+interface Props {}
+
+const m = {
+    home: '/',
+    about: '/about',
+}
+---
+
+<nav>
+    <ul>
+        {
+            Object.entries(m).map(([key, val]) => (
+                <li>
+                    <a href={val}>{key}</a>
+                </li>
+            ))
+        }
+    </ul>
+</nav>

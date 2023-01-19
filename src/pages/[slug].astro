@@ -1,0 +1,31 @@
+---
+import Card from '../components/astro/Card.astro'
+import Layout from '../components/astro/Layout.astro'
+
+export async function getStaticPaths() {
+    const post = await Astro.glob('../posts/*.md')
+    return post.map((p: any) => ({
+        params: { slug: p.frontmatter.slug },
+        props: {
+            p,
+        },
+    }))
+}
+
+const { slug } = Astro.params // filename
+const {
+    p: { Content, frontmatter },
+} = Astro.props // props: { p!! }
+---
+
+<Layout title={slug}>
+    <section class="page-content">
+        <div class="container">
+            <Card>
+                <a href="/blog">back</a>
+                <h2>{frontmatter.title}</h2>
+                <Content />
+            </Card>
+        </div>
+    </section>
+</Layout>
